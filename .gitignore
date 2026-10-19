@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.tmp/
+*.pfx
+*.cert
+webpack.statistics.*.html
+npm-debug.log*

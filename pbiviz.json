@@ -1,0 +1,22 @@
+{
+  "visual": {
+    "name": "DrillDownPiePro",
+    "displayName": "Drill Down Pie Pro",
+    "guid": "drillDownPieProD8F3A91C72B4",
+    "visualClassName": "Visual",
+    "version": "1.0.5.0",
+    "description": "Hierarchical drill-down pie chart with grouped Others, detail labels, paged legend and Power BI selection support.",
+    "supportUrl": "https://github.com/muxiaoqi007/drill-down-pie-pro/issues",
+    "gitHubUrl": "https://github.com/muxiaoqi007/drill-down-pie-pro"
+  },
+  "apiVersion": "5.9.0",
+  "author": {
+    "name": "Drill Down Pie",
+    "email": "dev@example.com"
+  },
+  "assets": {
+    "icon": "assets/icon.svg"
+  },
+  "style": "style/visual.less",
+  "capabilities": "capabilities.json"
+}

@@ -1,0 +1,134 @@
+{
+  "dataRoles": [
+    {
+      "displayName": "层级类别",
+      "name": "category",
+      "kind": "Grouping",
+      "description": "依次放入省份、城市、区县等字段；单击扇区逐级下钻"
+    },
+    {
+      "displayName": "数值",
+      "name": "measure",
+      "kind": "Measure",
+      "description": "决定扇区大小的数值"
+    },
+    {
+      "displayName": "工具提示",
+      "name": "tooltips",
+      "kind": "Measure",
+      "description": "悬停时显示的附加数值"
+    }
+  ],
+  "objects": {
+    "general": {
+      "properties": {
+        "formatString": { "type": { "formatting": { "formatString": true } } }
+      }
+    },
+    "pie": {
+      "displayName": "饼图",
+      "properties": {
+        "innerRadius": { "displayName": "内半径 (%)", "type": { "numeric": true } },
+        "startAngle": { "displayName": "起始角度", "type": { "numeric": true } },
+        "strokeColor": { "displayName": "分隔线颜色", "type": { "fill": { "solid": { "color": true } } } },
+        "strokeWidth": { "displayName": "分隔线宽度", "type": { "numeric": true } },
+        "jaggedOthers": { "displayName": "Others 锯齿边缘", "type": { "bool": true } },
+        "jaggedDepth": { "displayName": "锯齿深度", "type": { "numeric": true } }
+      }
+    },
+    "others": {
+      "displayName": "Others 分组",
+      "properties": {
+        "show": { "displayName": "启用分组", "type": { "bool": true } },
+        "mode": {
+          "displayName": "分组方式",
+          "type": { "enumeration": [
+            { "displayName": "仅显示前 N 项", "value": "topN" },
+            { "displayName": "小于百分比", "value": "percent" }
+          ] }
+        },
+        "topN": { "displayName": "单独显示项数", "type": { "numeric": true } },
+        "percentThreshold": { "displayName": "百分比阈值", "type": { "numeric": true } },
+        "label": { "displayName": "分组名称", "type": { "text": true } },
+        "color": { "displayName": "分组颜色", "type": { "fill": { "solid": { "color": true } } } }
+      }
+    },
+    "labels": {
+      "displayName": "详细标签",
+      "properties": {
+        "show": { "displayName": "显示", "type": { "bool": true } },
+        "content": {
+          "displayName": "标签内容",
+          "type": { "enumeration": [
+            { "displayName": "类别 + 百分比", "value": "categoryPercent" },
+            { "displayName": "类别 + 数值", "value": "categoryValue" },
+            { "displayName": "仅类别", "value": "category" },
+            { "displayName": "仅百分比", "value": "percent" }
+          ] }
+        },
+        "fontSize": { "displayName": "字号", "type": { "numeric": true } },
+        "fontColor": { "displayName": "文字颜色", "type": { "fill": { "solid": { "color": true } } } },
+        "lineColor": { "displayName": "引导线颜色", "type": { "fill": { "solid": { "color": true } } } },
+        "lineWidth": { "displayName": "引导线宽度", "type": { "numeric": true } },
+        "decimalPlaces": { "displayName": "百分比小数位", "type": { "numeric": true } }
+      }
+    },
+    "legend": {
+      "displayName": "图例",
+      "properties": {
+        "show": { "displayName": "显示", "type": { "bool": true } },
+        "position": {
+          "displayName": "位置",
+          "type": { "enumeration": [
+            { "displayName": "底部", "value": "bottom" },
+            { "displayName": "顶部", "value": "top" }
+          ] }
+        },
+        "fontSize": { "displayName": "字号", "type": { "numeric": true } },
+        "fontColor": { "displayName": "文字颜色", "type": { "fill": { "solid": { "color": true } } } },
+        "markerSize": { "displayName": "色块大小", "type": { "numeric": true } }
+      }
+    },
+    "colors": {
+      "displayName": "数据颜色",
+      "properties": {
+        "palette": { "displayName": "调色板（逗号分隔）", "type": { "text": true } }
+      }
+    },
+    "interaction": {
+      "displayName": "交互",
+      "properties": {
+        "drillOnClick": { "displayName": "单击下钻", "type": { "bool": true } },
+        "crossFilter": { "displayName": "同步交叉筛选", "type": { "bool": true } }
+      }
+    },
+    "background": {
+      "displayName": "背景",
+      "properties": {
+        "color": { "displayName": "背景色", "type": { "fill": { "solid": { "color": true } } } }
+      }
+    }
+  },
+  "dataViewMappings": [
+    {
+      "conditions": [
+        { "category": { "max": 8 }, "measure": { "max": 1 }, "tooltips": { "max": 8 } }
+      ],
+      "categorical": {
+        "categories": {
+          "for": { "in": "category" },
+          "dataReductionAlgorithm": { "window": { "count": 30000 } }
+        },
+        "values": {
+          "select": [
+            { "bind": { "to": "measure" } },
+            { "for": { "in": "tooltips" } }
+          ]
+        }
+      }
+    }
+  ],
+  "supportsHighlight": true,
+  "sorting": { "default": {} },
+  "privileges": []
+}
